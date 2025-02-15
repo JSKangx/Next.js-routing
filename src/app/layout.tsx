@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
+import Navbar from "@/app/components/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,14 +28,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <header className="bg-black h-[100px] text-white border-b-2 border-white flex justify-center">
-          <div className=" flex justify-center items-center gap-10 font-bold text-[25px] h-full max-w-[600px]">
-            <Link href={"/"}>홈</Link>
-            <Link href={"/study"}>스터디 클럽</Link>
-            <Link href={"/lecture"}>전체 강의</Link>
-            <Link href={"/board"}>게시판</Link>
-          </div>
-        </header>
+        <Navbar />
         <main className="p-10 min-h-[300px] text-2xl">{children}</main>
         <footer className="bg-black h-[100px] text-white border-t-2 border-white px-10">
           고객센터 홈페이지 우측 하단 [문의하기]를 통해 1:1 채팅상담을 이용하실
