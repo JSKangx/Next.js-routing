@@ -2,7 +2,9 @@
 import { StudyProps } from "@/app/study/[studyId]/page";
 import { useRouter } from "next/navigation";
 
-export default function StudyDetailClient({ studyId }: StudyProps["params"]) {
+export default function StudyDetailClient({
+  studyId,
+}: Awaited<StudyProps["params"]>) {
   const router = useRouter();
   const handleButtonClick = () => {
     router.back();

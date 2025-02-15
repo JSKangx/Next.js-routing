@@ -1,19 +1,21 @@
 import StudyDetailClient from "@/app/study/[studyId]/StudyDetailClient";
 
 export type StudyProps = {
-  params: {
+  params: Promise<{
     studyId: string;
-  };
+  }>;
 };
 
 // 메타 데이터 설정
-export function generateMetadata({ params }: StudyProps) {
+export async function generateMetadata({ params }: StudyProps) {
+  const awaitedParams = await params;
   return {
-    title: `Next.js | ${params.studyId}번 스터디룸`,
-    description: `${params.studyId}번 스터디룸`,
+    title: `Next.js | ${awaitedParams.studyId}번 스터디룸`,
+    description: `${awaitedParams.studyId}번 스터디룸`,
   };
 }
 
-export default function StudyDetail({ params }: StudyProps) {
-  return <StudyDetailClient studyId={params.studyId} />;
+export default async function StudyDetail({ params }: StudyProps) {
+  const awaitedParams = await params;
+  return <StudyDetailClient studyId={awaitedParams.studyId} />;
 }

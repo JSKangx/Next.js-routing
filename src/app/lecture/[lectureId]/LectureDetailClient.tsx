@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 
 export default function LectureDetailClient({
   lectureId,
-}: LectureProps["params"]) {
+}: Awaited<LectureProps["params"]>) {
   const router = useRouter();
   const handleButtonClick = () => {
     router.back();

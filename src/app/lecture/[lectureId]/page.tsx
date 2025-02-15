@@ -2,19 +2,21 @@
 import LectureDetailClient from "@/app/lecture/[lectureId]/LectureDetailClient";
 
 export type LectureProps = {
-  params: {
+  params: Promise<{
     lectureId: string;
-  };
+  }>;
 };
 
 // 메타 데이터 설정
-export function generateMetadata({ params }: LectureProps) {
+export async function generateMetadata({ params }: LectureProps) {
+  const awaitedParams = await params;
   return {
-    title: `Next.js | ${params.lectureId}번 강의실`,
-    description: `${params.lectureId}`,
+    title: `Next.js | ${awaitedParams.lectureId}번 강의실`,
+    description: `${awaitedParams.lectureId}`,
   };
 }
 
-export default function LectureDetail({ params }: LectureProps) {
-  return <LectureDetailClient lectureId={params.lectureId} />;
+export default async function LectureDetail({ params }: LectureProps) {
+  const awaitedParams = await params;
+  return <LectureDetailClient lectureId={awaitedParams.lectureId} />;
 }
